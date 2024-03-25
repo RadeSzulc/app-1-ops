@@ -5,6 +5,7 @@ pipeline {
         choice(name: 'BRANCH', choices: ['master', 'development', 'feature'], description: 'Git branch to build')
         booleanParam(name: 'FULL_BUILD', defaultValue: true, description: 'Perform a full build')
         password(name: 'SECRET', description: 'A secret token')
+        booleanParam(name: 'DEPLOY', defaultValue: true, description: 'Czy uruchomić etap wdrożenia?')
     }
     stages {
         stage('Initialize') {
@@ -25,10 +26,13 @@ pipeline {
             }
         }
         stage('Deploy') {
+            when {
+                expression { params.DEPLOY }
+            }
             steps {
+                echo 'Wdrażanie aplikacji...'
                 echo "Deploying with secret token: ${params.SECRET}"
             }
-        }
         stage('Example') {
             steps {
                 echo "${params.GREETING}"
