@@ -31,8 +31,8 @@ pipeline {
         }
         stage('Example') {
             steps {
-                echo ${params.Greeting}
-                echo ${params.Branch}
+                echo "${params.Greeting}"
+                echo "${params.Branch}"
             }
         }
     }
