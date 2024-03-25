@@ -29,5 +29,11 @@ pipeline {
                 echo "Deploying with secret token: ${params.SECRET}"
             }
         }
+        stage('Example') {
+            steps {
+                echo ${params.Greeting}
+                echo ${params.Branch}
+            }
+        }
     }
 }
