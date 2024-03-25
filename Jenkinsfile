@@ -13,6 +13,11 @@ pipeline {
                 echo "Setup initiated..."
             }
         }
+        stage('Integration with another GIT') {
+            steps {
+                git url: 'https://github.com/PeterPorzuczek/TimeRiddle.git', branch: 'master'
+            }
+        }
         stage('Build') {
             steps {
                 echo "${params.GREETING}, starting build on ${params.BRANCH} branch."
